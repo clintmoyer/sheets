@@ -1,0 +1,97 @@
+.TH SHEETS 1 sheets\-VERSION
+.SH NAME
+sheets \- minimal spreadsheet
+.SH SYNOPSIS
+.B sheets
+.RB [ \-v ]
+.RI [ file ]
+.SH DESCRIPTION
+.B sheets
+is a minimal terminal spreadsheet program. It reads and writes CSV
+files and supports formulas with cell references.
+.SH OPTIONS
+.TP
+.B \-v
+prints version information to stdout, then exits.
+.SH USAGE
+.TP
+.B h/j/k/l or arrow keys
+navigate between cells.
+.TP
+.B Enter or e
+edit current cell (keep content).
+.TP
+.B i
+edit current cell (clear content).
+.TP
+.B =
+start entering a formula.
+.TP
+.B x or Delete
+delete current cell.
+.TP
+.B y
+yank (copy) current cell.
+.TP
+.B p
+paste yanked cell.
+.TP
+.B g
+go to cell A1.
+.TP
+.B G
+go to last used row.
+.TP
+.B 0 or Home
+go to first column.
+.TP
+.B $ or End
+go to last used column in row.
+.TP
+.B Tab/Shift-Tab
+move right/left.
+.TP
+.B PgUp/PgDn
+scroll page up/down.
+.TP
+.B Ctrl-S
+save file.
+.TP
+.B :w [file]
+save to file.
+.TP
+.B :q
+quit (warns if unsaved).
+.TP
+.B :q!
+quit without saving.
+.TP
+.B :wq
+save and quit.
+.TP
+.B :<cell>
+go to cell (e.g., :B5).
+.SH FORMULAS
+Cells starting with
+.B =
+are evaluated as formulas. Supported operations:
+.TP
+.B +, -, *, /
+arithmetic operators.
+.TP
+.B A1, B2, ...
+cell references.
+.TP
+.B SUM(A1:A10)
+sum of range.
+.TP
+.B AVG(A1:A10)
+average of range.
+.TP
+.B MIN(A1:A10)
+minimum of range.
+.TP
+.B MAX(A1:A10)
+maximum of range.
+.SH SEE ALSO
+.BR sc (1)

@@ -1,0 +1,4 @@
+sheets
+*.o
+*.tar.gz
+config.h
