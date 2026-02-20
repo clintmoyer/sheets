@@ -1,0 +1,24 @@
+sheets - minimal spreadsheet
+============================
+sheets is a minimal terminal spreadsheet program.
+
+
+Requirements
+------------
+In order to build sheets you need ncurses header files.
+
+
+Installation
+------------
+Edit config.mk to match your local setup (sheets is installed into
+the /usr/local namespace by default).
+
+Afterwards enter the following command to build and install sheets
+(if necessary as root):
+
+    make clean install
+
+
+Running sheets
+--------------
+See the man page for details.
