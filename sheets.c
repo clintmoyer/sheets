@@ -25,10 +25,28 @@ static int dirty;        /* unsaved changes flag */
 /* macros */
 #define CELL(r, c) (&cells[(r) * maxcols + (c)])
 
+/* forward declarations */
+static int celladdr(const char *s, int *row, int *col);
+
+/* callback for eval.c to get cell values by address */
+static double
+cellvalfn(const char *addr, int *ok)
+{
+	int r, c;
+
+	if (!celladdr(addr, &r, &c)) {
+		*ok = 0;
+		return 0;
+	}
+	*ok = CELL(r, c)->hasval;
+	return CELL(r, c)->val;
+}
+
 static void
 initcells(void)
 {
 	cells = ecalloc(maxrows * maxcols, sizeof(Cell));
+	eval_setcellfn(cellvalfn);
 }
 
 /* parse column name to index: A=0, B=1, ..., Z=25 */
@@ -66,7 +84,7 @@ rowstr2idx(const char *s, const char **end)
 }
 
 /* parse cell address like "A1" into row, col indices */
-int
+static int
 celladdr(const char *s, int *row, int *col)
 {
 	const char *p = s;
